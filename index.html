@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filtrar Números Pares</title>
+</head>
+<body>
+    <p>Insira </p>
+    <input type="text" id="input-numeros" placeholder="Insira números">
+    <button id="btn-filtrar">Filtrar Números Pares</button>
+    <p id="resultado"></p>
+
+    <script>
+        let numerosPares = [];
+
+        // Função para filtrar números pares
+        function filtrarNumerosPares(arr) {
+            return arr.filter((numero, index, self) => self.indexOf(numero) === index && numero % 2 === 0);
+        }
+
+        // Função para lidar com o evento de clique no botão
+        document.getElementById("btn-filtrar").addEventListener("click", function () {
+            const numeroDigitado = document.getElementById("input-numeros").value;
+            const numero = parseInt(numeroDigitado);
+
+            if (!isNaN(numero) && numero % 2 === 0 && !numerosPares.includes(numero)) {
+                numerosPares.push(numero);
+            }
+
+            const resultadoElement = document.getElementById("resultado");
+
+            if (numerosPares.length > 0) {
+                resultadoElement.textContent = "Números pares: " + numerosPares.join(", ");
+            } else {
+                resultadoElement.textContent = "Não há números pares para exibir";
+            }
+        });
+    </script>
+</body>
+</html>
